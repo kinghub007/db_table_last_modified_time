@@ -1,19 +1,19 @@
-# Shell Script for Dumping Databases, Checkinig Databases' Last Modification Time & Cleaning Up Unwanted Databases
-This script takes backups of the databases, checks creation time, last modification time, find differences of days between present time and last modification time of any database and performs cleanup accordingly.
+# Shell Script for Dumping Databases, Checkinig Databases' Last Modification Time
+This script takes backups of the databases, checks creation time, last modification time, find differences of days between present time and last modification time of any database.
 
 ## Clone the repository
 Clone the repository and grant required permission and make it executable to run it.
 ```bash
 cd ~/
-git clone git@gitea.modirum.com:kingshuk.chowdhury/db_last_mod_date_n_cleanup.git
-cd db_last_mod_date_n_cleanup
+git clone git@github.com:kinghub007/db_table_last_modified_time.git
+cd db_table_last_modified_time
 sudo chmod +x db_mod.sh
 ```
 
 ## CLI Usage:
 ```bash
 cd ~/
-cd db_last_mod_date_n_cleanup
+cd db_table_last_modified_time
 ./db_mod.sh
 ```
 
