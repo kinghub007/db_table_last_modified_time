@@ -18,9 +18,9 @@ do
 		echo "Database $DB's last table was created on $db_create_date and was not modified after creation."
 		echo ""
 	else
-		db_mod_date_secs=$(date -j -f "%Y-%m-%d %H:%M:%S" "${db_mod_date}" "+%s")
+		db_mod_date_secs=$(date --date="${db_mod_date}" +%s)
 		today=$(date +%s)
-		date_diff=$((($today -$db_mod_date_secs)/86400))
+		date_diff=$((($today - $db_mod_date_secs)/86400))
 		echo "Database $DB was last modified $date_diff days ago."
 		echo ""
 	fi
