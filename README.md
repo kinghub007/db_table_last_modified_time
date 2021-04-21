@@ -5,7 +5,7 @@ This script takes backups of the databases, checks creation time, last modificat
 Clone the repository, make required changes to the `ignore_dbs` file, grant required permission to the script and make it executable to run it 
 ```bash
 cd ~/
-git clone git@github.com:kinghub007/db_table_last_modified_time.git
+git clone https://github.com/kinghub007/db_table_last_modified_time.git
 cd db_table_last_modified_time
 sudo chmod +x db_mod.sh
 ```

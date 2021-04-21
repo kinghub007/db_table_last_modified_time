@@ -16,7 +16,9 @@ do
 	do
 		mysqldump $DB > /root/dbbackup/"$DB-$(date +%Y%m%d).sql";
 		db_create_date=$(mysql -e "use $DB;select max(create_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(create_time)")
-		db_mod_date=$(mysql -e "use $DB;select max(update_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(update_time)")
+		db_mod_date=$(mysql -e "use $DB;select max(update_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(update_time)"
+		db_mod_table=$(mysql -e "use $DB;select table_name, max(update_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(update_time)" | grep -v "table_name")
+
 		if [ "$db_create_date" == NULL ]
 		then
 			echo "Database '$DB' does not contain any table."
@@ -29,7 +31,8 @@ do
 			db_mod_date_secs=$(date --date="${db_mod_date}" +%s)
 			today=$(date +%s)
 			date_diff=$((($today - $db_mod_date_secs)/86400))
-			echo "Database $DB was last modified $date_diff days ago."
+			echo "From database $DB, last modified table and modification time are '$db_mod_table'."
+			echo "Modification was done $date_diff days ago."
 			echo ""
 		fi
 	done
