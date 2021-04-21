@@ -31,7 +31,7 @@ do
 			db_mod_date_secs=$(date --date="${db_mod_date}" +%s)
 			today=$(date +%s)
 			date_diff=$((($today - $db_mod_date_secs)/86400))
-			echo "From database '$DB', last modified table and modification time are '$db_mod_table'."
+			echo "In database '$DB', last modified table and modification time are '$db_mod_table'."
 			echo "Modification was done $date_diff days ago."
 			echo ""
 		fi
