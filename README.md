@@ -2,7 +2,7 @@
 This script takes backups of the databases, checks creation time, last modification time, find differences of days between present time and last modification time of any database.
 
 ## Clone the repository
-Clone the repository and grant required permission and make it executable to run it.
+Clone the repository, make required changes to the `ignore_dbs` file, grant required permission to the script and make it executable to run it 
 ```bash
 cd ~/
 git clone git@github.com:kinghub007/db_table_last_modified_time.git
