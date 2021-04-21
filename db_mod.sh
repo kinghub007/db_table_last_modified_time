@@ -34,14 +34,16 @@ do
                 elif [ "$db_mod_date" == NULL ]
                 then            
                         echo "$DB" >> ./unmodified_dbs        
-                        echo "Database '$DB' last table was created on '$db_create_date' and was not modified after creation."
-                        echo ""
+                        db_create_date_secs=$(date --date="${db_create_date}" +%s)
+			today=$(date "+%s")
+                        date_diff_create=$((($today - $db_create_date_secs)/86400))
+                        echo "In database '$DB', last table created $date_diff_create days ago, on '$db_create_date' and no modification occured."
+			echo ""
 		else
 			db_mod_date_secs=$(date --date="${db_mod_date}" +%s)
 			today=$(date +%s)
 			date_diff=$((($today - $db_mod_date_secs)/86400))
-			echo "In database '$DB', last modified table and modification time are '$db_mod_table'."
-			echo "Modification was done $date_diff days ago."
+			echo "In database '$DB', last modified table and modification time are '$db_mod_table', $date_diff days ago."
 			echo ""
 		fi
 	done
