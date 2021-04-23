@@ -49,4 +49,5 @@ do
             echo ""
         fi
     done
+    column -t ./unmodified_dbs
 done < "$file"
