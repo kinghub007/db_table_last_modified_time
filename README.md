@@ -1,5 +1,5 @@
-# Shell Script for Dumping Databases, Checkinig Databases' Last Modification Time
-This script takes backups of the databases, checks creation time, last modification time, find differences of days between present time and last modification time of any database and saves unmodified databases in the `unmodified_dbs` file.
+# Shell Script for  Checkinig Databases' Table Creation & Last Modification Time
+This script checks creation time, last modification time, find differences of days between present time and last modification time as well as  present time and creation time of any database and saves unmodified databases in the `unmodified_dbs` file.
 
 ## Clone the repository
 Clone the repository, make required changes to the `ignore_dbs` file, grant required permission to the script and make it executable to run it 
