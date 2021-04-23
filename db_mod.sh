@@ -5,7 +5,11 @@
 # db_mod_date_secs converts the db_mod_date to seconds
 # date_diff is the difference between today (now) and db_mod_date to find days between today and database last modification date
 # if a database is not modified or does not contain any table it will saved in the file unmodified_dbs
-# Finding Databases' Last Table Creation Time, Last Modification Time
+
+# Creating Directory to Dump Databases
+#mkdir -p -- /root/dbbackup
+
+# Dumping, Finding Creation Time, Last Modification Time
 if [ ! -e ./unmodified_dbs ]
 then
     touch unmodified_dbs
@@ -19,6 +23,7 @@ while IFS= read -r line
 do
     for DB in $(echo "show databases" | mysql | grep -Ev "^($line)$");
     do
+#	mysqldump $DB > /root/dbbackup/"$DB-$(date +%Y%m%d).sql";
         db_create_table=$(mysql -e "use $DB;select concat(table_name,' - ',max(create_time)) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(create_time)" | grep -v "table_name")
         db_create_date=$(mysql -e "use $DB;select max(create_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(create_time)")
      	db_mod_date=$(mysql -e "use $DB;select max(update_time) from information_schema.tables where table_schema = database();" | grep -v "\----" | grep -v "max(update_time)")
