@@ -14,9 +14,19 @@ if [ ! -e ./unmodified_dbs ]
 then
     touch unmodified_dbs
 else
-    cat /dev/null > unmodified_dbs
+    cat /dev/null > ./unmodified_dbs
     echo "Databse - Table - Creation Time - Update Time" >> ./unmodified_dbs
 fi
+
+if [ ! -e ./modified_dbs ]
+then
+    touch modified_dbs
+else
+    cat /dev/null > ./modified_dbs
+    echo "Databse - Table - Creation Time - Last Update" >> ./modified_dbs
+    echo "" >> ./modified_dbs
+fi
+
 
 file=./ignore_dbs
 while IFS= read -r line
@@ -41,13 +51,17 @@ do
             date_diff_create=$((($today - $db_create_date_secs)/86400))
             echo -e "Database: '\033[1m$DB\033[0m', last created table and creation time: '\033[1m$db_create_table\033[0m', $date_diff_create days ago, and no modification occurred."
             echo ""
+	    cat /dev/null > ./modified_dbs
         else
             db_mod_date_secs=$(date --date="${db_mod_date}" +%s)
 	    today=$(date "+%s")
             date_diff_mod=$((($today - $db_mod_date_secs)/86400))
             echo -e "Database: '\033[1m$DB\033[0m', last modified table and modification time: '\033[1m$db_mod_table\033[0m', $date_diff_mod days ago."
             echo ""
+	    echo "$DB - $db_create_table - $db_mod_date" >> ./modified_dbs
         fi
     done
     column -t ./unmodified_dbs
+    echo ""
+    column -t ./modified_dbs
 done < "$file"
