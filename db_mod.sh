@@ -12,7 +12,7 @@
 # Dumping, Finding Creation Time, Last Modification Time
 if [ ! -e ./unmodified_dbs ]
 then
-    touch unmodified_dbs
+    touch ./unmodified_dbs
 else
     cat /dev/null > ./unmodified_dbs
     echo "Databse - Table - Creation Time - Update Time" >> ./unmodified_dbs
@@ -20,7 +20,7 @@ fi
 
 if [ ! -e ./modified_dbs ]
 then
-    touch modified_dbs
+    touch ./modified_dbs
 else
     cat /dev/null > ./modified_dbs
     echo "Databse - Table - Creation Time - Last Update" >> ./modified_dbs
