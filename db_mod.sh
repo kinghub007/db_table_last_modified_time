@@ -27,7 +27,6 @@ else
     echo "" >> ./modified_dbs
 fi
 
-
 file=./ignore_dbs
 while IFS= read -r line
 do
