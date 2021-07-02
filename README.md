@@ -17,5 +17,5 @@ cd db_table_last_modified_time
 ./db_mod.sh
 ```
 
-# FYI
+## FYI
 * Only privileged users are allowed to run the script.
